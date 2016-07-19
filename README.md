@@ -1,7 +1,9 @@
 # -
 ###小技巧  
   http://placehold.it/ 
->移动端图片处理  
+>移动端图片处理 
+
+
 1.用div代替img标签的使用，添加style="background-image: url(http://placehold.it/尺寸宽度x尺寸高度)"  
 2.给定高度 height  
 3.设置background-size:cover/contain;  
