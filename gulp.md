@@ -25,4 +25,5 @@
 *   gulpfile.js        (gulp配置)
 *   package.json    (项目配置)
 *   teams.json    (测试json数据)
+*   README.md	(说明文档)
 
