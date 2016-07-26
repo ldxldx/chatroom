@@ -21,6 +21,7 @@
 	* image (图片)
 		* icon (图标)
 *    .babelrc(bable配置文件)
+*    .gitignore
 *   gulpfile.js        (gulp配置)
 *   package.json    (项目配置)
 *   teams.json    (测试json数据)
