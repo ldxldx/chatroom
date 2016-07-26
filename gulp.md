@@ -4,8 +4,8 @@
 *   dist (项目输出目录)
 	* html
 	* js
-    	* css
-    	* images
+    * css
+    * images
 *   node_modules   (nodejs模块)
 *   src (项目开发目录)  
 	*  html
