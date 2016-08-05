@@ -10,11 +10,17 @@
   
 >pc端图片处理  
 
-
 1.在img的src属性值改为"http://placehold.it/尺寸宽度x尺寸高度"  
 2.添加width、height属性，给定宽高  
+
+>不同分辨率下图片的显示,特别是Retina(视网膜-ipone4s,iPhone5，New iPad等IOS设备)
+
+  background-image:url(imgPath);
+  backgrouund-image:-webkit-image-set(url('imgPath1x') 1x,url(imgPath2x) 2x);
   
-  
+-webkit-image-set这个属性是css4中background-image属性定义的新方法，语法如上.不支持image-set会只解析第一句background-image  
+支持image-set,普通显示屏下,浏览器会选择image-set中的@1x背景图像，而Retina屏幕下浏览器会选择image-set中的@2x背景图像
+
 >rem的使用  
   
   
