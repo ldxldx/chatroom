@@ -5,6 +5,10 @@ const server = h.createServer((req,res)=>{
 }).listen(3000);
 let io = require('socket.io')(server);
 io.on('connection',function(socket){
-    console.log(socket);
-    socket.emit('msgReceived','hello')
+    //连接成功后
+    socket.on('sendMessage',function(data){
+        //接受到客户传过来数据
+        socket.broadcast.emit('newMessage',data);
+    });
 });
+

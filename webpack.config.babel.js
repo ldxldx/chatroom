@@ -21,13 +21,16 @@ let glob = require('glob');
 let CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 let UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 //debug标示
-let projectConfig = false;
+let projectConfig = {
+    "debugger":true
+};
 //IP地址
 let serverHost = getIPAdress();
 let config = {
     entry: {
         index: path.resolve(__dirname, 'src/js/index.js'),
-        vendors: ['vue', 'vue-router','vue-resource','vuex','element-ui','element-ui/lib/theme-default/index.css'] // 需要进行单独打包的文件
+        //vendors: ['vue', 'vue-router','vue-resource','vuex','element-ui','element-ui/lib/theme-default/index.css'] // 需要进行单独打包的文件
+        vendors: ['vue'] // 需要进行单独打包的文件
     },
     output: {
         path: path.join(__dirname, 'dist'), //输出目录的配置，模板、样式、脚本、图片等资源的路径配置都相对于它
