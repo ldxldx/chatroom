@@ -1,4 +1,6 @@
 const h = require('http');
+const MongoClient = require('mongodb').MongoClient;
+const DB_ADDRESS = 'mongodb://localhost:27017/';
 const server = h.createServer((req,res)=>{
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('服务器创建成功！');
