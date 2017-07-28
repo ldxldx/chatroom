@@ -50,5 +50,8 @@
   "bugs": {
     "url": "https://github.com/ldxldx/chatroom/issues"
   },
-  "homepage": "https://github.com/ldxldx/chatroom#readme"
+  "homepage": "https://github.com/ldxldx/chatroom#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
