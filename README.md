@@ -1,6 +1,6 @@
  a simple chat room
 
-> ####package.json 特别插件使用说明：
+> ####package.json 部分插件使用说明：
 
     body-parser   node.js 正文解析中间件
                   在处理程序之前，在中间件中解析传入的请求体，在req.body属性下可用 
