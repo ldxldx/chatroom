@@ -2,6 +2,9 @@ require('../html/index.html');
 require('../sass/index.scss');
 
 import Vue from 'vue';
+import VueResouce from 'vue-resource';
+Vue.use(VueResouce);
+
 let SOCKET;
 const template = `
         <div class="content">
@@ -39,6 +42,7 @@ const App = new Vue({
             });
             _this.setScroll();
         });
+        this.register();
     },
     methods: {
         send(){
@@ -56,6 +60,19 @@ const App = new Vue({
                 let _item = document.getElementsByClassName('view')[0];
                 _item.scrollTop = _item.scrollHeight
             },10);
+        },
+        /**
+         * 注册
+         */
+        register(){
+            this.$http.post('http://192.168.31.74:3000/register',{
+                id : 1,
+                msg : 'hello word'
+            }).then(res =>{
+                console.log(res)
+            }).catch(err=>{
+                this.$message.error('网络错误 ' + err.status);
+            })
         }
     },
 });

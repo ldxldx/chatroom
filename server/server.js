@@ -1,27 +1,37 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
+const bodyParser = require('body-parser');// 用于解析中间件传入的请求体
+const multer = require('multer');//用于解析 multipart/form-data 类型的表单数据
+
 const app = express();
+
 //静态文件放在多个目录下的话，可多次调用
-app.use(express.static('../dist'));
-//起服务
-
-let DB_CONN_STR = 'mongodb://localhost:27017/vip'
-const server = app.listen(3000,()=>{
-
+app.use('/dist', express.static('../dist'));
+//挂载服务
+const server = app.listen(3000, () => {
+    console.log('服务器启动成功')
 });
+app.use((req,res,next)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
+
 /**
  * 注册
  */
-app.post('/register',(req,res)=>{
-  console.log('register 注册');
-  console.log(req);
+app.post('/register',bodyParser.json(), (req, res) => {
+    if(!req.body) res.sendStatus(400);
+    console.log("这里是注册post接口中间件");
+
+    res.json({
+        code:0,
+        data:null,
+        msg:'注册成功'
+    });
 });
-// const h = require('http');;
-//
-// const server = h.createServer((req, res) => {
-//     res.writeHead(200, {'Content-Type': 'text/plain'});
-//     res.end('服务器创建成功！');
-// }).listen(3000);
+/**
+ * socket
+ */
 // let io = require('socket.io')(server);
 // io.on('connection', function (socket) {
 //     //连接成功后
@@ -30,6 +40,10 @@ app.post('/register',(req,res)=>{
 //         socket.broadcast.emit('newMessage', data);
 //     });
 // });
+/**
+ * mongodb
+ */
+// let DB_CONN_STR = 'mongodb://localhost:27017/vip';
 // MongoClient.connect(DB_CONN_STR, function(err, db) {
 //
 //     db.collection('vip').find().toArray(function (err,docs) {
