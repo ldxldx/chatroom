@@ -33,15 +33,15 @@ const App = new Vue({
     },
     template: template,
     mounted(){
-        let _this = this;
-        SOCKET = io('http://192.168.31.74:3000');
-        SOCKET.on('newMessage', (data) => {
-            _this.info.push({
-                data: data,
-                source: 'other'
-            });
-            _this.setScroll();
-        });
+        // let _this = this;
+        // SOCKET = io('http://192.168.31.74:3000');
+        // SOCKET.on('newMessage', (data) => {
+        //     _this.info.push({
+        //         data: data,
+        //         source: 'other'
+        //     });
+        //     _this.setScroll();
+        // });
         this.register();
     },
     methods: {
@@ -65,11 +65,13 @@ const App = new Vue({
          * 注册
          */
         register(){
-            this.$http.post('http://192.168.31.74:3000/register',{
-                id : 1,
-                msg : 'hello word'
+            this.$http.post('http://192.168.31.74:3000/api/register',{
+                user:'ldx2',
+                pwd:284655,
+                nikename:'ldx'
             }).then(res =>{
-                console.log(res)
+                res = res.body;
+                console.log(res.msg)
             }).catch(err=>{
                 this.$message.error('网络错误 ' + err.status);
             })
