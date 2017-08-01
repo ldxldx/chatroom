@@ -9,25 +9,36 @@ const app = express();
 app.use('/dist', express.static('../dist'));
 //挂载服务
 const server = app.listen(3000, () => {
-    console.log('服务器启动成功')
+  console.log('服务器启动成功')
 });
-app.use((req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "*");
-    next();
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
 });
 
 /**
  * 注册
  */
-app.post('/register',bodyParser.json(), (req, res) => {
-    if(!req.body) res.sendStatus(400);
-    console.log("这里是注册post接口中间件");
+app.post('/register', bodyParser.json(), (req, res) => {
+  if (!req.body) res.sendStatus(400);
+  let data = req.body;
+  //校验参数
+  if (data.user){//只可以数字、字母、邮箱
 
-    res.json({
-        code:0,
-        data:null,
-        msg:'注册成功'
-    });
+  }
+  if(data.pwd){//只可以数字、字母、少数符号
+
+  }
+  if(data.nikename){//不可有特殊字符
+
+  }
+  console.log("这里是注册post接口中间件");
+
+  res.json({
+    code: 0,
+    data: null,
+    msg: '注册成功'
+  });
 });
 /**
  * socket
