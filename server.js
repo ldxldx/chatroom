@@ -37,7 +37,8 @@ app.post('/api/register', bodyParser.json(), (req, res, next) => {
             });
         } else {
             mongoVip.collection('vip').insert(data,(err,result)=>{
-                err?next(new Error('数据库操作失败')):res.json({
+              if(err) next(new Error('数据库操作失败'));
+              res.json({
                     code: 0,
                     data: null,
                     msg: '注册成功'
