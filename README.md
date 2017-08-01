@@ -12,10 +12,10 @@
     
     mongolass     mongodb驱动库
         
-       
+
 > ####项目目录文件说明
 
-* dist 页面静态资源  
+* dist 页面静态资源
 * src 前端页面开发目录
 * routes 路由资源
 * mongo 数据模型
