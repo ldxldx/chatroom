@@ -7,7 +7,7 @@ module.exports = function (app) {
      * 连接mongodb 查询 插入
      */
     app.post('/api/register', bodyParser.json(), (req, res, next) => {
-        if (!req.body) res.sendStatus(400);
+        if (!req.body) res.status(400).send('请传参数');
         console.log("这里是注册post接口");
         let data = req.body;
         collectionUser.getUserByName(data.user)
