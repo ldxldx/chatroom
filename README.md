@@ -1,5 +1,27 @@
  a simple chat room
 
+> ####项目目录文件说明
+
+* dist 页面静态资源
+* server 后端开发目录  
+      - api 接口管理
+      - log 日志
+      - mongo mongodb（模块、方法）
+      - routes 路由 
+
+* src 前端页面开发目录
+      - html 
+      - js 
+          - components vue组件
+          - lib 插件
+          - index.js 页面入口
+          - router vue路由
+      - sass
+
+* config.js node、mongodb配置文件
+* server.js node入口文件
+* webpack.config.babel.js pack配置文件
+
 > ####package.json 特别插件使用说明：
 
     body-parser   node.js 正文解析中间件
@@ -12,13 +34,3 @@
     
     mongolass     mongodb驱动库
         
-
-> ####项目目录文件说明
-
-* dist 页面静态资源
-* src 前端页面开发目录
-* routes 路由资源
-* mongo 数据模型
-* server.js node入口文件
-* webpack.config.babel.js pack配置文件
-

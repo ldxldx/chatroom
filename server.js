@@ -1,9 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');// 用于解析中间件传入的请求体
+const API = require('./server/api/index');
 // const multer = require('multer');//用于解析 multipart/form-data 类型的表单数据（通常用于视频流）
-const Mongo = require('mongoskin');
-const mongoVip = Mongo.db('mongodb://localhost:27017/vip');
-
 const app = express();
 
 //静态文件放在多个目录下的话，可多次调用
@@ -19,34 +16,12 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     next();
 });
+
 /**
- * 注册
- * 连接mongodb 查询 插入
+ * 添加api
  */
-app.post('/api/register', bodyParser.json(), (req, res, next) => {
-    if (!req.body) res.sendStatus(400);
-    console.log("这里是注册post接口");
-    let data = req.body;
-    mongoVip.collection('vip').findOne({user:data.user},(err,info)=>{
-        if(err) next(new Error('数据库操作失败'));
-        if(info){
-            res.json({
-                code: 100,
-                data: null,
-                msg: '用户名已存在'
-            });
-        } else {
-            mongoVip.collection('vip').insert(data,(err,result)=>{
-              if(err) next(new Error('数据库操作失败'));
-              res.json({
-                    code: 0,
-                    data: null,
-                    msg: '注册成功'
-                });
-            });
-        }
-    });
-});
+API(app);
+
 /**
  * 错误处理
  */
@@ -65,6 +40,3 @@ app.use((err,req, res, next)=>{
 //         socket.broadcast.emit('newMessage', data);
 //     });
 // });
-/**
- * mongodb
- */
