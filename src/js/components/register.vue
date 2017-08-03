@@ -1,28 +1,75 @@
 <template>
-
+    <div class="register-component">
+        <div class="register-content">
+            <div class="tit">和我签订契约，成为魔法骚男吧。</div>
+            <div class="con">
+                <p class="avatar">
+                    <span>
+                        <img src="https://shadowshift.com/theme/material/images/users/avatar-001.jpg" alt="">
+                    </span>
+                </p>
+                <div v-for="(item,index) in formConfig" class="form-group" :class="[{'focus':currentFocus===index},form[item.id]===null||form[item.id]===''?'':'have']">
+                    <label :for="item.id">{{item.label}}</label>
+                    <input v-if="item.id === 'pwd'" type="password" v-model="form[item.id]" id="item.id" @focus="currentFocus=index" @blur="currentFocus=null">
+                    <input v-else type="text" v-model="form[item.id]" id="item.id" @focus="currentFocus=index" @blur="currentFocus=null">
+                </div>
+                <div class="form-group">
+                    <button class="btn" @click="register">注册</button>
+                </div>
+                <div class="form-group">
+                    <a class="toLogin" href="javascript:;" @click="toLogin">已经注册？请登录</a>
+                </div>
+                <div class="form-group">
+                    <p class="prompt">注册即代表同意成为骚男，以及保证所录入信息的真实性，如有不实信息会导致账号被删除。</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 <script>
     export default {
         data(){
             return {
-                msg: 'hello'
+                formConfig:[{
+                    label:'用户名',
+                    id:'user',
+                },{
+                    label:'昵称',
+                    id:'nikeName',
+                },{
+                    label:'密码',
+                    id:'pwd',
+                },],
+                currentFocus:null,
+                form:{
+                    user:null,
+                    nikeName:null,
+                    pwd:null
+                },
+                user:null
             }
         },
         methods: {
+            toLogin(){
+              this.$router.push({
+                  path:'/login'
+              });
+            },
             /**
              * 注册
              */
             register(){
-                this.$http.post('http://192.168.31.74:3000/api/register',{
-                    user:'ldx2',
-                    pwd:'284655',
-                    nikename:'ldx'
-                }).then(res =>{
-                    res = res.body;
-                    console.log(res.msg)
-                }).catch(err=>{
-                    this.$message.error('网络错误 ' + err.status);
-                })
+
+//                this.$http.post('http://192.168.31.74:3000/api/register', {
+//                    user: 'ldx2',
+//                    pwd: '284655',
+//                    nikename: 'ldx'
+//                }).then(res => {
+//                    res = res.body;
+//                    console.log(res.msg)
+//                }).catch(err => {
+//                    this.$message.error('网络错误 ' + err.status);
+//                })
             }
         },
     }
@@ -31,4 +78,101 @@
     @import "../../sass/common/variable";
     @import "../../sass/common/mixin";
 
+    .register-component {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .register-content {
+            width: 415px;
+            border-radius: 2px;
+            box-shadow: 0 -1px 0 #e5e5e5, 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .24);
+            .tit {
+                padding: 12px;
+                font-size: 20px;
+                line-height: 28px;
+                height: 56px;
+                border-bottom: 1px solid rgba(0, 0, 0, .12);
+            }
+            .con {
+                margin: 24px 16px;
+                .avatar {
+                    text-align: center;
+                    margin: 12px 0;
+                    span {
+                        display: inline-block;
+                        width: 80px;
+                        height: 80px;
+                        line-height: 80px;
+                    }
+                    img {
+                        border-radius: 50%;
+                        height: 100%;
+                        vertical-align: top;
+                        width: 100%;
+                    }
+                }
+                .form-group {
+                    margin: 36px 0;
+                    position: relative;
+                    label {
+                        color: rgba(0, 0, 0, .38);
+                        cursor: text;
+                        font-size: 14px;
+                        line-height: 1;
+                        position: absolute;
+                        top: 11px;
+                        left: 0;
+                        transition: color, transform .3s cubic-bezier(.4, 0, .2, 1);
+                    }
+                    input {
+                        background-color: transparent;
+                        background-image: none;
+                        border: 0;
+                        border-bottom: 1px solid rgba(0, 0, 0, .12);
+                        border-radius: 0;
+                        display: block;
+                        font-size: 14px;
+                        height: 36px;
+                        line-height: 20px;
+                        padding: 8px 0 7px;
+                        width: 100%;
+                        outline: none;
+                    }
+                    &.have,&.focus{
+                        label {
+                            color: #ff4081;
+                            transform: scale(.85714, .85714) translateY(-27px);
+                        }
+                    }
+                    &.focus {
+                        input{
+                            border-bottom: 2px solid #ff4081;
+                        }
+                    }
+                    .btn{
+                        display: block;
+                        width: 100%;
+                        height: 36px;
+                        border: none;
+                        color: #fff;
+                        background-color: #3f51b5;
+                        border-radius: 2px;
+                        box-shadow: 0 1px 3px rgba(0,0,0,.15);
+                        &:hover{
+                            cursor:pointer;
+                        }
+                    }
+                    .toLogin{
+                        color: #3f51b5;
+                    }
+                    .prompt{
+                        padding: 12px 0;
+                        font-size: 14px;
+                        line-height: 20px;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
 </style>
