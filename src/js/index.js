@@ -6,12 +6,17 @@ import VueResouce from 'vue-resource';
 Vue.use(VueResouce);
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
-import router from './router';
+import routes from './router';
+const router  = new VueRouter({
+    routes:routes
+});
 const template = `
         <div class="container">
             <header></header>
-            <div class="content"></div>
-            <footer></footer>
+            <div class="content">
+                <router-view></router-view>
+            </div>
+            <footer>页面仿制于<a href="https://shadowshift.com" target="_blank">@ShadowShift-影移</a></footer>
         </div>
     `;
 const App = new Vue({
@@ -19,12 +24,12 @@ const App = new Vue({
     data: {
 
     },
-    routes:router,
+    router:router,
     template: template,
     mounted(){
 
     },
-    methods: {
+    methods:{
 
     }
 });
