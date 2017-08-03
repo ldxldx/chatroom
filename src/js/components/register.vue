@@ -8,13 +8,18 @@
                         <img src="https://shadowshift.com/theme/material/images/users/avatar-001.jpg" alt="">
                     </span>
                 </p>
-                <div v-for="(item,index) in formConfig" class="form-group" :class="[{'focus':currentFocus===index},form[item.id]===null||form[item.id]===''?'':'have']">
+                <div v-for="(item,index) in formConfig" class="form-group"
+                     :class="[{'focus':currentFocus===index},form[item.id]===null||form[item.id]===''?'':'have']">
                     <label :for="item.id">{{item.label}}</label>
-                    <input v-if="item.id === 'pwd'" type="password" v-model="form[item.id]" id="item.id" @focus="currentFocus=index" @blur="currentFocus=null">
-                    <input v-else type="text" v-model="form[item.id]" id="item.id" @focus="currentFocus=index" @blur="currentFocus=null">
+                    <input v-if="item.id === 'pwd'" type="password" v-model="form[item.id]" id="item.id"
+                           @focus="currentFocus=index" @blur="currentFocus=null">
+                    <input v-else type="text" v-model="form[item.id]" id="item.id" @focus="currentFocus=index"
+                           @blur="currentFocus=null">
                 </div>
                 <div class="form-group">
-                    <button class="btn" @click="register">注册</button>
+                    <botton-repple @click="register">
+                        <slot>注册</slot>
+                    </botton-repple>
                 </div>
                 <div class="form-group">
                     <a class="toLogin" href="javascript:;" @click="toLogin">已经注册？请登录</a>
@@ -27,39 +32,43 @@
     </div>
 </template>
 <script>
-    export default {
-        data(){
-            return {
-                formConfig:[{
-                    label:'用户名',
-                    id:'user',
-                },{
-                    label:'昵称',
-                    id:'nikeName',
-                },{
-                    label:'密码',
-                    id:'pwd',
-                },],
-                currentFocus:null,
-                form:{
-                    user:null,
-                    nikeName:null,
-                    pwd:null
-                },
-                user:null
-            }
+  import botton from './botton.vue';
+  export default {
+    components: {
+      'botton-repple':botton
+    },
+    data(){
+      return {
+        formConfig: [{
+          label: '用户名',
+          id: 'user',
+        }, {
+          label: '昵称',
+          id: 'nikeName',
+        }, {
+          label: '密码',
+          id: 'pwd',
+        },],
+        currentFocus: null,
+        form: {
+          user: null,
+          nikeName: null,
+          pwd: null
         },
-        methods: {
-            toLogin(){
-              this.$router.push({
-                  path:'/login'
-              });
-            },
-            /**
-             * 注册
-             */
-            register(){
-
+        user: null
+      }
+    },
+    methods: {
+      toLogin(){
+        this.$router.push({
+          path: '/login'
+        });
+      },
+      /**
+       * 注册
+       */
+      register(){
+        console.log("xxx")
 //                this.$http.post('http://192.168.31.74:3000/api/register', {
 //                    user: 'ldx2',
 //                    pwd: '284655',
@@ -70,9 +79,9 @@
 //                }).catch(err => {
 //                    this.$message.error('网络错误 ' + err.status);
 //                })
-            }
-        },
-    }
+      }
+    },
+  }
 </script>
 <style lang="scss" scoped>
     @import "../../sass/common/variable";
@@ -138,34 +147,21 @@
                         width: 100%;
                         outline: none;
                     }
-                    &.have,&.focus{
+                    &.have, &.focus {
                         label {
                             color: #ff4081;
                             transform: scale(.85714, .85714) translateY(-27px);
                         }
                     }
                     &.focus {
-                        input{
+                        input {
                             border-bottom: 2px solid #ff4081;
                         }
                     }
-                    .btn{
-                        display: block;
-                        width: 100%;
-                        height: 36px;
-                        border: none;
-                        color: #fff;
-                        background-color: #3f51b5;
-                        border-radius: 2px;
-                        box-shadow: 0 1px 3px rgba(0,0,0,.15);
-                        &:hover{
-                            cursor:pointer;
-                        }
-                    }
-                    .toLogin{
+                    .toLogin {
                         color: #3f51b5;
                     }
-                    .prompt{
+                    .prompt {
                         padding: 12px 0;
                         font-size: 14px;
                         line-height: 20px;

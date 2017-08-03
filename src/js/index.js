@@ -3,8 +3,8 @@ require('../sass/index.scss');
 
 import Vue from 'vue';
 import VueResouce from 'vue-resource';
-Vue.use(VueResouce);
 import VueRouter from 'vue-router';
+Vue.use(VueResouce);
 Vue.use(VueRouter);
 import routes from './router';
 const router  = new VueRouter({
