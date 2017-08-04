@@ -1,6 +1,6 @@
 const express = require('express');
 const API = require('./server/api/index');
-// const multer = require('multer');//用于解析 multipart/form-data 类型的表单数据（通常用于视频流）
+// const multer = require('multer');//用于解析 multipart/form-data 类型的表单数据（通常用于视频流） 对分布式不支持
 const app = express();
 
 //静态文件放在多个目录下的话，可多次调用

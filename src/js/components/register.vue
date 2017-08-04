@@ -8,21 +8,29 @@
                         <img src="https://shadowshift.com/theme/material/images/users/avatar-001.jpg" alt="">
                     </span>
                 </p>
-                <div v-for="(item,index) in formConfig" class="form-group"
-                     :class="[{'focus':currentFocus===index},form[item.id]===null||form[item.id]===''?'':'have']">
+                <div class="form-group"
+                     v-for="(item,index) in formConfig"
+                     :class="[{'focus':currentFocus===index},form[item.id]===null||form[item.id]===''?'':'have']"
+                     @click="getFocus(index)">
                     <label :for="item.id">{{item.label}}</label>
-                    <input v-if="item.id === 'pwd'" type="password" v-model="form[item.id]" id="item.id"
-                           @focus="currentFocus=index" @blur="currentFocus=null">
-                    <input v-else type="text" v-model="form[item.id]" id="item.id" @focus="currentFocus=index"
+                    <input v-if="item.id === 'pwd'"
+                           type="password"
+                           :id="item.id"
+                           v-model="form[item.id]"
+                           @blur="currentFocus=null">
+                    <input v-else
+                           type="text"
+                           v-model="form[item.id]"
+                           :id="item.id"
                            @blur="currentFocus=null">
                 </div>
                 <div class="form-group">
-                    <botton-repple @click="register">
+                    <button-ripple @click="register">
                         <slot>注册</slot>
-                    </botton-repple>
+                    </button-ripple>
                 </div>
                 <div class="form-group">
-                    <a class="toLogin" href="javascript:;" @click="toLogin">已经注册？请登录</a>
+                    <a class="toLogin" href="javascript:;" @click="$router.push({path: '/login'})">已经注册？请登录</a>
                 </div>
                 <div class="form-group">
                     <p class="prompt">注册即代表同意成为骚男，以及保证所录入信息的真实性，如有不实信息会导致账号被删除。</p>
@@ -32,43 +40,37 @@
     </div>
 </template>
 <script>
-  import botton from './botton.vue';
-  export default {
-    components: {
-      'botton-repple':botton
-    },
-    data(){
-      return {
-        formConfig: [{
-          label: '用户名',
-          id: 'user',
-        }, {
-          label: '昵称',
-          id: 'nikeName',
-        }, {
-          label: '密码',
-          id: 'pwd',
-        },],
-        currentFocus: null,
-        form: {
-          user: null,
-          nikeName: null,
-          pwd: null
+    import button from './botton.vue';
+    export default {
+        components: {
+            'button-ripple': button
         },
-        user: null
-      }
-    },
-    methods: {
-      toLogin(){
-        this.$router.push({
-          path: '/login'
-        });
-      },
-      /**
-       * 注册
-       */
-      register(){
-        console.log("xxx")
+        data(){
+            return {
+                formConfig: [{
+                    label: '用户名',
+                    id: 'user',
+                }, {
+                    label: '昵称',
+                    id: 'nikeName',
+                }, {
+                    label: '密码',
+                    id: 'pwd',
+                },],
+                currentFocus: null,
+                form: {
+                    user: null,
+                    nikeName: null,
+                    pwd: null
+                },
+            }
+        },
+        methods: {
+            /**
+             * 注册
+             */
+            register(){
+                console.log("xxx")
 //                this.$http.post('http://192.168.31.74:3000/api/register', {
 //                    user: 'ldx2',
 //                    pwd: '284655',
@@ -79,9 +81,14 @@
 //                }).catch(err => {
 //                    this.$message.error('网络错误 ' + err.status);
 //                })
-      }
-    },
-  }
+            },
+            getFocus(index){
+                if (this.currentFocus === index) return;
+                this.currentFocus = index;
+                document.getElementById(this.formConfig[index].id).focus();
+            }
+        },
+    }
 </script>
 <style lang="scss" scoped>
     @import "../../sass/common/variable";
