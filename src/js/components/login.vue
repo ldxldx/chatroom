@@ -77,9 +77,7 @@
 
         },
         methods: {
-            login(){
-
-            },
+            login(){},
             check(selected){
                 console.log(selected);
             },
