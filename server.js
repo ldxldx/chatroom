@@ -18,9 +18,6 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", 'Content-Type');
     res.header("Access-Control-Request-Method", "GET,POST,DELETE,PUT");
-    if(req.method === 'OPTIONS') {
-        res.send('ok')
-    }
     next();
 });
 /**
