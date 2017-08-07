@@ -5,22 +5,22 @@
 * dist 页面静态资源
 * server 后端开发目录
 
-      - api 接口管理
-      - log 日志
-      - mongo mongodb（模块、方法）
-      - routes 路由 
+   - api 接口管理
+   - log 日志
+   - mongo mongodb（模块、方法）
+   - routes 路由
 
 * src 前端页面开发目录
 
-      - html 
-      - js
+   - html
+   - js
 
-          - components vue组件
-          - lib 插件
-          - index.js 页面入口
-          - router vue路由
+       - components vue组件
+       - lib 插件
+       - index.js 页面入口
+       - router vue路由
 
-      - sass
+   - sass
 
 * config.js node、mongodb配置文件
 * server.js node入口文件
