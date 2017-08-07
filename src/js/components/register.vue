@@ -70,17 +70,39 @@
              * 注册
              */
             register(){
-                console.log("xxx")
-//                this.$http.post('http://192.168.31.74:3000/api/register', {
-//                    user: 'ldx2',
-//                    pwd: '284655',
-//                    nikename: 'ldx'
-//                }).then(res => {
-//                    res = res.body;
-//                    console.log(res.msg)
-//                }).catch(err => {
-//                    this.$message.error('网络错误 ' + err.status);
-//                })
+                this.$Validate({
+                    obj:this.form,
+                    rules:{
+                        user:{
+                            required:true
+                        },
+                        nikeName: {
+                            required:true
+                        },
+                        pwd: {
+                            required:true
+                        }
+                    },
+                    message:{
+                        user:{
+                            required:'请输入用户名'
+                        },
+                        nikeName: {
+                            required:'请输入昵称'
+                        },
+                        pwd: {
+                            required:'请输入密码'
+                        }
+                    }
+                }).then(()=>{
+                    this.$http.post('http://192.168.31.74:3000/api/register', this.form).then(res => {
+                        res = res.body;
+                        alert(res.msg)
+                    }).catch(err => {
+                        alert('网络错误 ' + err.status)
+                    })
+                });
+
             },
             getFocus(index){
                 if (this.currentFocus === index) return;

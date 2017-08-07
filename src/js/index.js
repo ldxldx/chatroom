@@ -4,9 +4,11 @@ require('../sass/index.scss');
 import Vue from 'vue';
 import VueResouce from 'vue-resource';
 import VueRouter from 'vue-router';
+import routes from './router';
+import Validate from './lib/validate_vue_plugin';
 Vue.use(VueResouce);
 Vue.use(VueRouter);
-import routes from './router';
+Vue.use(Validate);
 const router  = new VueRouter({
     routes:routes
 });

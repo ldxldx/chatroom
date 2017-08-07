@@ -1,8 +1,8 @@
 module.exports = {
     session: {
-        secret: 'vip',
-        key: 'vip',
+        secret: 'user',
+        key: 'user',
         maxAge: 2592000000
     },
-    mongodb: 'mongodb://localhost:27017/vip'
+    mongodb: 'mongodb://localhost:27017/user'
 }

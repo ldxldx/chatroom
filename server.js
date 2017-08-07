@@ -1,5 +1,8 @@
 const express = require('express');
 const API = require('./server/api/index');
+const session = require('express-session');
+const config = require('./config');
+const MongoStore = require('connect-mongo')(session);
 // const multer = require('multer');//用于解析 multipart/form-data 类型的表单数据（通常用于视频流） 对分布式不支持
 const app = express();
 //静态文件放在多个目录下的话，可多次调用
@@ -13,9 +16,26 @@ const server = app.listen(3000, () => {
  */
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", 'Content-Type');
+    res.header("Access-Control-Request-Method", "GET,POST,DELETE,PUT");
+    if(req.method === 'OPTIONS') {
+        res.send('ok')
+    }
     next();
 });
-
+/**
+ *
+ */
+app.use(session({
+    name: config.session.key,
+    secret: config.session.secret,
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+        masAge: config.session.maxAge,
+    },
+    store: new MongoStore({ url: config.mongodb })
+}));
 /**
  * 添加api
  */
@@ -24,8 +44,10 @@ API(app);
 /**
  * 错误处理
  */
-app.use((err,req, res, next)=>{
-    console.log(err.stack);
+app.use((err, req, res, next) => {
+    console.log('错误处理')
+    //根本传过来的err 来判断错误事项
+    console.log(err);
     res.status(500).send('操作失败')
 });
 /**

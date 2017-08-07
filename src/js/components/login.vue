@@ -33,7 +33,7 @@
                     </button-cov>
                 </div>
                 <div class="form-group">
-                    <checkbox-cov @change="check">
+                    <checkbox-cov @change="remember = !remember">
                         <slot>记住我</slot>
                     </checkbox-cov>
                 </div>
@@ -48,6 +48,7 @@
 <script>
     import botton from './botton.vue';
     import checkbox from './checkbox.vue';
+    import {httpUrl} from '../lib/httpUrl';
     export default {
         components: {
             'button-cov': botton,
@@ -71,15 +72,25 @@
                     pwd: null,
                     Vcode: null,
                 },
+                remember:false,
             }
         },
         mounted(){
 
         },
         methods: {
-            login(){},
-            check(selected){
-                console.log(selected);
+            login(){
+                console.log("xxxx")
+                this.$http.post(httpUrl.login,this.form).then(res =>{
+                    res = res.body;
+                    if(res.code === 0){
+
+                    } else {
+                        alert(res.msg);
+                    }
+                }).catch(err=>{
+                    alert('网络错误 ' + err.status);
+                })
             },
             getFocus(index){
                 if(this.currentFocus === index) return;
