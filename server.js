@@ -26,10 +26,11 @@ app.use((req, res, next) => {
 app.use(session({
     name: config.session.key,
     secret: config.session.secret,
-    resave: true,
-    saveUninitialized: false,
+    resave: false,
+    saveUninitialized: true,
     cookie: {
-        masAge: config.session.maxAge,
+        secure: true,
+        maxAge: config.session.maxAge,
     },
     store: new MongoStore({ url: config.mongodb })
 }));
