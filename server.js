@@ -29,10 +29,15 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        secure: true,
         maxAge: config.session.maxAge,
     },
-    store: new MongoStore({ url: config.mongodb })
+    store: new MongoStore({
+        url: config.mongodb,
+        collection:'session',
+        ttl:20,
+        autoRemoveInterval:10,
+        touchAfter:24*3600
+    })
 }));
 /**
  * 添加api

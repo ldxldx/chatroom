@@ -39,14 +39,12 @@ module.exports = function (app) {
     });
     app.post('/api/login', bodyParser.json(), (req, res, next) => {
         console.log("这里是登录post接口");
-        console.log(req.session.user);
         let data = req.body;
         //找用户
         if(data.pwd) data.pwd = md5(data.pwd);
+        req.session.user = data.user;
         collectionUser.checkUser(data).then(status=>{
             if(status === 0){
-                req.session.user = data.user;
-                console.log(req.session.user)
                 res.json({
                     code: 0,
                     data: null,
