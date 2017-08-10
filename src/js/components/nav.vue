@@ -2,7 +2,7 @@
     <nav class="nav-component">
         <div class="tit">菜单</div>
         <ul>
-            <li v-for="(item,index) in list" @click="switchComponent(item)">{{item.label}}</li>
+            <li v-for="(item,index) in list" @click="switchComponent(item)" :class="{'active':currentTag === item.tag}">{{item.label}}</li>
         </ul>
     </nav>
 </template>
@@ -10,29 +10,39 @@
     export default {
         data(){
             return {
+                currentTag:'welcome',
                 list:[{
                     label:'首页',
-                    tag:'',
+                    tag:'welcome',
                     icon:'',
                     component:'/welcome',
                 },{
                     label:'登录',
-                    tag:'',
+                    tag:'login',
                     icon:'',
                     component:'/login',
                 },{
                     label:'注册',
-                    tag:'',
+                    tag:'register',
                     icon:'',
                     component:'/register',
                 }]
             }
         },
+        mounted(){
+          if(this.$route.query.tag){
+              this.currentTag = this.$route.query.tag;
+          }
+        },
         methods:{
             switchComponent(item){
                 this.$router.push({
-                    path:item.component
-                })
+                    path:item.component,
+                    query: {
+                        tag: item.tag
+                    }
+                });
+                this.currentTag = item.tag;
             }
         }
     }
@@ -58,9 +68,8 @@
                 line-height: 48px;
                 padding: 0 20px;
                 cursor: pointer;
-                &:hover{
+                &:hover,&.active{
                     background: #f5f5f5;
-
                 }
             }
         }

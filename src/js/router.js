@@ -3,7 +3,7 @@ import register from './components/register.vue';
 import login from './components/login.vue';
 const routes = [{
     path:'/',
-    redirect:'/welcome'
+    redirect:'/welcome?tag=welcome'
 },{
     path:'/welcome',
     component:welcome
