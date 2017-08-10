@@ -8,7 +8,7 @@
             <div class="con">
                 <p class="avatar">
                     <span>
-                        <img src="https://shadowshift.com/theme/material/images/users/avatar-001.jpg" alt="">
+                        <img src="http://i2.bvimg.com/1949/26149cb6ab38600d.jpg" alt="">
                     </span>
                 </p>
                 <div class="form-group"
@@ -80,11 +80,13 @@
         },
         methods: {
             login(){
-                console.log("xxxx")
-                this.$http.post(httpUrl.login,this.form).then(res =>{
+                this.$http.post(httpUrl.signIn,this.form).then(res =>{
                     res = res.body;
                     if(res.code === 0){
 
+                        //跳到主页
+                        //跳转路由 到前一模块
+                        this.$router.go(-1);
                     } else {
                         alert(res.msg);
                     }

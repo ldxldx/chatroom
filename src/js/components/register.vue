@@ -5,7 +5,7 @@
             <div class="con">
                 <p class="avatar">
                     <span>
-                        <img src="https://shadowshift.com/theme/material/images/users/avatar-001.jpg" alt="">
+                        <img src="http://i2.bvimg.com/1949/26149cb6ab38600d.jpg" alt="">
                     </span>
                 </p>
                 <div class="form-group"

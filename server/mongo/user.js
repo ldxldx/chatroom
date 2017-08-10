@@ -10,17 +10,6 @@ module.exports = {
         return User.findOne({user : userName}).exec();
     },
     checkUser(data) {
-        return User.findOne({user : data.user}).then((result,err)=>{
-            if(result){
-                if(result.pwd !== data.pwd){
-                    return 1;
-                }
-                return 0;
-            } else {
-                return 2;
-            }
-        }).catch(err=>{
-            return new Error(err);
-        });
+        return User.findOne({user : data.user}).exec();
     }
 };
