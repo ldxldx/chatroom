@@ -1,8 +1,12 @@
+import welcome from './components/welcome.vue';
 import register from './components/register.vue';
 import login from './components/login.vue';
 const routes = [{
     path:'/',
-    component:login
+    redirect:'/welcome'
+},{
+    path:'/welcome',
+    component:welcome
 },{
   path:'/register',
   component:register
