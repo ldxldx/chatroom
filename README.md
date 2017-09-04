@@ -26,7 +26,7 @@
 * server.js node入口文件
 * webpack.config.babel.js pack配置文件
 
-> ####package.json 特别插件使用说明：
+> ####package.json 插件使用说明：
 
     body-parser   node.js 正文解析中间件
                   在处理程序之前，在中间件中解析传入的请求体，在req.body属性下可用 
@@ -36,5 +36,16 @@
                           
     multer        解析multipart/form-data 的表单数据
     
-    mongolass     mongodb驱动库
-        
+    mongolass     mongodb驱动库  
+    
+> 开发说明
+
+待完善：  
+* 注册-登录 （待完善：密码加密需更换为Crypto、数据库更改为mysql） 
+ 
+待开发：
+* 角色权限管理
+* 聊天室页面 
+* 数据流通
+* 传照片
+      
