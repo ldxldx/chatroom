@@ -26,7 +26,7 @@
                     tag:'register',
                     icon:'',
                     component:'/register',
-                }]
+                }],
             }
         },
         mounted(){
