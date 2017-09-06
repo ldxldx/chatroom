@@ -6,7 +6,7 @@ import VueResouce from 'vue-resource';
 import VueRouter from 'vue-router';
 import routes from './router';
 import Validate from './lib/validate_vue_plugin';
-import nav from './components/nav.vue';
+import nav from './components/nav/nav.vue';
 Vue.use(VueResouce);
 Vue.use(VueRouter);
 Vue.use(Validate);

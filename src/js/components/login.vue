@@ -46,8 +46,8 @@
     </div>
 </template>
 <script>
-    import botton from './botton.vue';
-    import checkbox from './checkbox.vue';
+    import botton from '../UILibrary/botton.vue';
+    import checkbox from '../UILibrary/checkbox.vue';
     import {httpUrl} from '../lib/httpUrl';
     export default {
         components: {

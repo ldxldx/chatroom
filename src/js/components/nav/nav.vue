@@ -48,8 +48,8 @@
     }
 </script>
 <style lang="scss" scoped>
-    @import "../../sass/common/variable";
-    @import "../../sass/common/mixin";
+    @import "../../../sass/common/variable";
+    @import "../../../sass/common/mixin";
     nav.nav-component{
         width: 100%;
         height: 100%;

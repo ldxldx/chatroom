@@ -40,7 +40,7 @@
     </div>
 </template>
 <script>
-    import button from './botton.vue';
+    import button from '../UILibrary/botton.vue';
     export default {
         components: {
             'button-ripple': button
